@@ -47,4 +47,39 @@ The last project analyzed is an investigation of the insight of the Top100 artis
 
 ## Datasets
 
+We have found some various dataset and we have saved them as .csv in his relative folder. The organization of the structure is like showed under.
+
+
+```text
+data/
+├── dataset_name_1/
+|   └── data.csv
+|
+|    
+└── dataset_name_n/
+    └── data.csv
+```
+
+
+
+#### [Artist](https://www.kaggle.com/pieca111/music-artists-popularity)
+The dataset consists of over 1.4 Million musical artists present in MusicBrainz database with in adds the information retrieve from the API last fm .
+The dataset could be found in the directory ```Data/last_fm/```.
+We have a total of 1'466'083, only the 3% of this row doesn't contain NA. For this we've made a clean data to avoid the losing of too many data, with a mixing of the data from mb and last_fm.
+Variables of dataset:
+- **mbid**: musicbrainz id
+- **artist_mb**: artist name according to musicbrainz
+- **artist_lastfm**: artist name according to last_fm
+- **country_mb**: artist country according to musicbrainz
+- **country_lastfm** : artist country, based on last_fm tags
+- **tags_mb**: artist tags on musicbrainz, separated by semicolon (;)
+- **tags_lastfm**: artist tags on last_fm, separated by semicolon (;), sorted by frequency decreasing
+- **listeners_lastfm**: number of listeners on last_fm
+- **scrobbles_lastfm**: number of scrobbles on last_fm
+- **ambiguous_artist**: TRUE if more than one artist shares the same last_fm page
+
+The collection of the data is be done by using the site kaggle.com.
+The dataset can help to answer to make a comparison between the artist of each country.
+
+#### [Ranking Song](https://www.kaggle.com/edumucelli/spotifys-worldwide-daily-song-ranking/)
 
