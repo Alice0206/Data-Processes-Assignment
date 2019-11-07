@@ -1,8 +1,12 @@
+library(dplyr)
+
+setwd("./Data/last_fm")
+
+
+
 ##read original dataset
-first_artists <- read.csv("artists.csv", header=T, na.strings=c("","NA"))
-second_artists <-  read.csv("artists.csv", header=T, na.strings=c("","NA"))
-  
-artists
+## you need to unzip the file without commit it
+artists <- read.csv("artists.csv", header=T, na.strings=c("","NA"))
 
 artists_clean <- artists %>% mutate(
   artist = ifelse(!is.na(artist_lastfm),as.character(artist_lastfm),as.character(artist_mb)),
@@ -18,3 +22,5 @@ artists_clean <- artists %>% mutate(
 ((nrow(artists)-nrow(artists_clean))/nrow(artists))*100
 
 write.csv(artists_clean,"artists_clean.csv", row.names = FALSE)
+
+View(artists_clean)
