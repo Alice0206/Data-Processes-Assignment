@@ -1,8 +1,8 @@
 # Data-Processes-Assignment
 ## Table of contents
-- [Collaborators](##collaborators)
-- [Domain of interest](##Domain-of-interest)
-- [Datasets](##datasets)
+- [Collaborators](#collaborators)
+- [Domain of interest](#Domain-of-interest)
+- [Datasets](#datasets)
 
 ## Collaborators
 
