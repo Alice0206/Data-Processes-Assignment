@@ -96,6 +96,7 @@ The dataset is downloaded from Kaggle, It is going to be used to find patterns a
 
 Variables of dataset:
 | **Position Position** | on charts
+| --------------------- |:---------:|
 | **Track Name** | Title of song
 | **Artist Name** | of musician or group
 | **Streams Number**| of streams
