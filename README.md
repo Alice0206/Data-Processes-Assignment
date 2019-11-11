@@ -48,6 +48,7 @@ By analyzing the data of the top 100 artists on Spotify, the following project t
 2. What are the characteristics of a new viral song? Which features are the most important, what is its average lifespan? (We would like to focus on Italy first and then extend it to Europe).
 3. Which countries are listening to their songs instead of foreign ones?
 4. Analysis of the evolution of the musical tastes in each country (in EU)?
+5. Is there much difference in features between the different genres of musics? Is the value of the beat correlated to the genre of music?
 
 ## Datasets
 
@@ -120,8 +121,6 @@ Variables of the dataset:
 - **mfccs**: Mel-frequency cepstral coefficients (MFCCs) are coefficients that collectively make up an MFC.
 - **label**: Contains a string depicting the genre
 
-Is there much difference in features between the different genres of musics?
-Is the value of the beat correlated to the genre of music?
 
 #### [Radio Stations](https://rapidapi.com/maxime.maisonneuve/api/30-000-radio-stations-and-music-charts/details)
 Deezer API and Rapid API offer a radio station API which can be used to access data about the music being played at the moment or was played recently (short term data).
