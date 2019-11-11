@@ -95,14 +95,14 @@ Data/spotify_ranking/.
 The dataset is downloaded from Kaggle, It is going to be used to find patterns and similarities among the top songs.
 
 Variables of dataset:
-| **Position Position** | on charts |
-| --------------------- |:---------:|
-| **Track Name** | Title of song |
-| **Artist Name** | of musician or group |
-| **Streams Number**| of streams |
-| **URL** |
-| **Date** |
-| **Region** | Country code |
+
+| Position Position | on charts |
+| Track Name | Title of song |
+| Artist Name | of musician or group |
+| Streams Number| of streams |
+| URL |
+| Date |
+| Region | Country code |
 
 #### [Music Features](https://www.kaggle.com/insiyeah/musicfeatures)
 
