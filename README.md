@@ -32,7 +32,8 @@ We think it is really interesting to work and explore data about music and have 
 
 ### Three data-driven project example
 
-The first project found use the Spotify API in a really interesting way to predict the person's mood based on playlist composition, it shows good statistical skills but not too hard to handle, it could be an inspiration for our project.
+In the following example, they are collecting data from Music streaming service platforms.
+Later they use this in a machine-learning algorithm to predict the mood of the user based on his/her playlist of music.
 <https://towardsdatascience.com/predicting-my-mood-using-my-spotify-data-2e898add122a>
 
 In this project, they try to find common patterns among the most popular songs on Spotify,
@@ -48,7 +49,7 @@ By analyzing the data of the top 100 artists on Spotify, the following project t
 2. What are the characteristics of a new viral song? Which features are the most important, what is its average lifespan? (We would like to focus on Italy first and then extend it to Europe).
 3. Which countries are listening to their songs instead of foreign ones?
 4. Analysis of the evolution of the musical tastes in each country (in EU)?
-5. Is there much difference in features between the different genres of musics? Is the value of the beat correlated to the genre of music?
+5. What are the main differences in features between different genres? How does the value of the "beat" feature change among songs from the same genre and how does it change among different genres?
 
 ## Datasets
 
