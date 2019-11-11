@@ -74,16 +74,16 @@ The Dataset consists of 1.4 Million musical artists, the dataset is collected th
 This dataset is downloaded from Kaggle.com. The dataset could be useful to make an analysis of artists from different countries.
 
 Variables of dataset:
-- **mbid**: musicbrainz id
-- **artist_mb**: artist name according to musicbrainz
-- **artist_lastfm**: artist name according to last_fm
+- **mbid**| musicbrainz id
+- **artist_mb** | artist name according to musicbrainz
+- **artist_lastfm** | artist name according to last_fm
 - **country_mb**: artist country according to musicbrainz
-- **country_lastfm** : artist country, based on last_fm tags
+- **country_lastfm** | artist country, based on last_fm tags
 - **tags_mb**: artist tags on musicbrainz, separated by semicolon (;)
 - **tags_lastfm**: artist tags on last_fm, separated by semicolon (;), sorted by frequency decreasing
-- **listeners_lastfm**: number of listeners on last_fm
-- **scrobbles_lastfm**: number of scrobbles on last_fm
-- **ambiguous_artist**: TRUE if more than one artist shares the same last_fm page
+- **listeners_lastfm** | number of listeners on last_fm
+- **scrobbles_lastfm** | number of scrobbles on last_fm
+- **ambiguous_artist** | TRUE if more than one artist shares the same last_fm page
 
 #### [Ranking Song](https://www.kaggle.com/edumucelli/spotifys-worldwide-daily-song-ranking/)
 This dataset contains the daily ranking of the 200 most listened songs on Spotify in 53 countries from 2017 to 2018.
@@ -95,13 +95,13 @@ Data/spotify_ranking/.
 The dataset is downloaded from Kaggle, It is going to be used to find patterns and similarities among the top songs.
 
 Variables of dataset:
-- **Position Position**: on charts
-- **Track Name**: Title of song
-- **Artist Name**: of musician or group
-- **Streams Number**: of streams
+- **Position Position** | on charts
+- **Track Name** | Title of song
+- **Artist Name** | of musician or group
+- **Streams Number**| of streams
 - **URL**
 - **Date**
-- **Region**: Country code
+- **Region** | Country code
 
 #### [Music Features](https://www.kaggle.com/insiyeah/musicfeatures)
 
