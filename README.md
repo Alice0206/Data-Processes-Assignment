@@ -48,7 +48,7 @@ By analyzing the data of the top 100 artists on Spotify, the following project t
 1. What features have TOP50 artists in Europe & China, some comparisons? We would like to generate a Map of nations (Europe) for the most common type of music (according to the features contained in the dataset).
 2. What are the differences in music features between song I like and song I dislike? A brief analysis of my musical tastes.
 3. Which countries are listening to their songs instead of foreign ones?
-4. Analysis of the evolution of the musical tastes in each country (in EU)?
+4. How have duration, tempo and loudness of songs changed through time?
 5. How do the features of music influence the genre of music? Are they significant?
 
 ## Datasets
