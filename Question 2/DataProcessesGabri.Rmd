@@ -1,0 +1,303 @@
+
+# Which are the characteristics of the songs I like? 
+
+The aim of this work is to explore, visualize, analyze with the hope of producing significant results that could encounter the interest of the reader and satisfy its maker. Analyzing **the features** of a Spotify playlist with the intent of finding patterns or any statistic significance in them in order to explain the criterion (or the criteria) beneath which a song is liked or not (by me, let's say).
+
+## Preliminary Operations
+
+Loading useful libraries, setting working directory and reading data from `.csv` file
+
+``` {r setup, include = FALSE}
+library(dplyr)
+library(ggplot2)
+library(GGally)
+library(FactoMineR)
+library(caret)
+library(rmarkdown)
+library(purrr)
+library(tidyr)
+library(plotly)
+
+# setwd("Data-Processes-Assignment/Question 2") # We suggest to use as working directory Data-Processes-Assignment
+
+data <- read.csv("data/music_features/data.csv")
+```
+
+This is the structure of the dataset
+
+```{r, echo=F}
+str(data)
+head(data)
+```
+
+We notice that the first column is a little strange, it looks like a replication of the index columns shifted by -1; to avoid that we are going to mutate the `data.csv` file, removing this column.
+
+```{r, echo=FALSE}
+new_data <- data %>% 
+  select(-X, -song_title, -artist)
+```
+
+This data frame contains pieces of information about music features, all the variables are provided by Spotify itself who then allows us to exploit these great datasets.
+
+We could find some interesting patterns between the variables and we hope to predict something about their success. A similar work could be found on [this link](https://www.kaggle.com/cihanoklap/top-songs-on-spotify-what-makes-them-popular) and a great study is found at [this link](https://essay.utwente.nl/75422/1/NIJKAMP_BA_IBA.pdf)
+
+But first of all we want to check the quality of our data, looking for *n/a* values
+
+```{r, include=T, echo=F}
+sum(is.na(new_data))
+```
+Aparently we have encountered a good dataset without missing values, in case we would have found them we could have decided to remove them or, if the were quite a lot, deal with other techniques such as average replacing or regression.
+
+
+```{r correlation plot, echo=FALSE}
+corr_plot <- ggpairs(new_data) # We've decided not to add it since it was not helpful to our purpose
+```
+
+it's clear we are working with too many variables and but this plot could be a good starting point for removing some of them. 
+
+Since we want to understand the ratio behind music features and success we can look for strongly dependent variables and select one of them, or chose a combination in order to reduce cardinality and computational complexity without losing variance.
+
+Duration range:
+```{r, echo=F}
+range(new_data$duration_ms)/1000/60 # Song duration in minutes
+```
+we could devide the song bye duration into 5 categories: *very short*, *short*, *medium*, *long*, *very long*
+
+```{r, include=T, echo=F}
+# Histogram showing what's the duration distribution of the songs in minutes
+
+ggplot(new_data) +
+  geom_histogram(aes(duration_ms/1000/60),bins = 10) +
+  xlab("Duration in minutes") +
+  ylab("Count") +
+  ggtitle("Song duration")
+```
+
+Since most of the songs appear to be between 2 and 3 minutes it's better to classify them in just 3 categories: *short*, *medium*, *long*. In order to do this we mutate the data frame with the following commands:
+
+```{r, include=TRUE, echo=FALSE}
+# Adding 2 columns: Duration in minutes and a lenght (categorical)
+
+new_data_new_features <- new_data %>% 
+  mutate(duration_minutes = duration_ms/1000/60) %>% 
+  mutate(lenght = ifelse(duration_minutes<2.5, "short", ifelse(duration_minutes>4.5, "long", "medium")))
+```
+
+We can now apply this new feature to give more insight to the next graphs.
+```{r, echo=FALSE}
+# Counting how many shor, medium and long songs are in the dataset
+
+table(new_data_new_features$lenght)
+```
+
+```{r, include=FALSE, }
+ggplot(new_data_new_features) +
+  geom_point(aes(tempo, danceability), alpha = 0.4) +
+  facet_grid(target~lenght) +
+  xlab("Tempo") +
+  ylab("Danceability") +
+  theme() +
+  ggtitle("Visualization of Danceability vs Tempo")
+```
+
+[//]: <> (No major insight with this graph, we try with another variable)
+
+```{r, include=FALSE}
+ggplot(new_data_new_features) +
+  geom_point(aes(tempo, energy), alpha = 0.4) +
+  facet_grid(target~lenght) +
+  xlab("Tempo") +
+  ylab("Energy") +
+  ggtitle("Visualization of Energy vs Tempo")
+```
+
+[//]: <> (Even from this, we could say much, keep going with trial and error technique.)
+
+```{r, include=FALSE}
+ggplot(new_data_new_features) +
+  geom_point(aes(tempo, acousticness), alpha = 0.4) +
+  facet_grid(target~lenght) +
+  xlab("Tempo") +
+  ylab("Acousticness") +
+  ggtitle("Visualization of Acousticness vs Tempo")
+```
+
+```{r, include=FALSE}
+ggplot(new_data_new_features) +
+  geom_point(aes(energy, danceability), alpha = 0.4) +
+  facet_grid(target~lenght) +
+  xlab("Energy") +
+  ylab("Danceability") +
+  ggtitle("Visualization of Danceability vs Energy")
+```
+
+```{r, include=FALSE}
+ggplot(new_data_new_features) +
+  geom_point(aes(liveness, danceability), alpha = 0.4) +
+  facet_grid(target~lenght) +
+  xlab("Liveness") +
+  ylab("Danceability") +
+  ggtitle("Visualization of Danceability vs Liveness")
+```
+
+```{r, include=FALSE}
+ggplot(new_data_new_features) +
+  geom_point(aes(acousticness, danceability), alpha = 0.4) +
+  facet_grid(target~lenght) +
+  xlab("Acousticness") +
+  ylab("Danceability") +
+  ggtitle("Visualization of Danceability vs Acousticness")
+```
+
+[//]: <> (Now I want to get an insight about which are the features of the songs I like and which are the one of the songs I don't like)
+
+## Spider Charts
+
+In order to compare music features of songs I like and don't I wanted to use a Spider Graph, in the following you can have an insight of which feature I appreciate the most.
+
+```{r, include=T, echo=F, warning=FALSE}
+new_data_new_features_omit <- new_data_new_features %>% 
+  select(-lenght)
+
+new_data_new_features_avg <- as.data.frame(
+  summarise_each(group_by(new_data_new_features_omit, target), funs(mean)))
+
+# Loading the necessary library to plot a spiderchart (I've found this looking a bit in the web and it was working quite good)
+
+new_data_new_features_avg_spider <- new_data_new_features_avg %>% 
+  select(-target, -duration_ms, -key, -mode, -time_signature, -duration_minutes, -tempo, -loudness)
+
+# I've plotted 2 spidercharts, but I'll be showing only one (the nicer one)
+
+new_data_new_features_avg_spider_2 <- new_data_new_features_avg %>% 
+  select(-target, -duration_ms, -duration_minutes, -loudness)
+
+# devo scalare tempo, key, time_signature
+
+scalare <- function(x) {
+  x <- x/sum(x)
+}
+
+new_data_new_features_avg_spider_3 <- apply(X = new_data_new_features_avg_spider_2, MARGIN = 2, FUN = scalare)
+
+library(radarchart)
+
+labs <- colnames(new_data_new_features_avg_spider_3)
+
+scores <- list(
+  "not liked" = as.numeric(new_data_new_features_avg_spider_3[1,]),
+  "liked" = as.numeric(new_data_new_features_avg_spider_3[2,])
+)
+
+chartJSRadar(scores = scores, labs = labs, maxScale = 0.8, showToolTipLabel=TRUE, main = "Radarplot of musical features by target")
+```
+
+As we can see, there are no disrupting differences in the two graphs, but since every variable is compressed between 0 and 1, also minor changes could be significant. 
+For example: *acoustics* is slightly higher in song that I didn't like while *instrumental ness* is slightly higher in the song I liked and so does *danceability*. Instead *valence* is harder to interpret since it's an overall score of the song, in this case it could mean that I like song with a higher overall score made by Spotify itself, which is ok.
+
+```{r, include=F}
+
+library(plotly)
+
+# Creating a dataset with the mean of the song's features. 
+
+
+library(radarchart)
+
+labs <- colnames(new_data_new_features_avg_spider)
+
+scores <- list(
+  "not liked" = as.numeric(new_data_new_features_avg_spider[1,]),
+  "liked" = as.numeric(new_data_new_features_avg_spider[2,])
+)
+
+chartJSRadar(scores = scores, labs = labs, maxScale = 0.8, showToolTipLabel=TRUE, main = "Radarplot of musical features base by taste")
+```
+
+## Fitting the glm model
+
+```{r, include=F}
+## 75% of the sample size
+smp_size <- floor(0.75 * nrow(new_data_new_features))
+
+## set the seed to make your partition reproducible
+set.seed(123)
+train_ind <- sample(seq_len(nrow(new_data_new_features)), size = smp_size)
+
+train <- new_data_new_features[train_ind, ] %>% # train set
+  mutate_if(is.character, as.factor)
+test <- new_data_new_features[-train_ind, ] %>% # test set
+  mutate_if(is.character, as.factor)
+```
+
+After having the data separated we're fitting a `glm()` model:
+
+```{r, include=T, echo=F}
+# First fitting a glm() with all the variables
+
+glm_1 <- glm(target~., family = binomial, data = train)
+summary(glm_1)
+
+# Removing from the model the variables without statistical significance.
+
+glm_2 <- update(glm_1, .~ . -duration_ms -energy -key -liveness -mode -tempo -time_signature -duration_minutes)
+summary(glm_2)
+
+# PLotting the residual to check goodness of the model
+
+par(mfrow = c(2, 3))
+plot(glm_2, which = 1:5)
+```
+
+The graphs show what looks like a good classification model, with residuals clearly distributed on two lines, no normality, but it's normal since the residuals and the model is supposed to be **binomial**, and few outliears that don't look like to be influential observation as we can see from the **Residuals vs LEverage** graph.
+
+The prediciotn made by fitting this model can be summarized in the following table:
+
+```{r, include=T, echo=F}
+## Predictionsss time
+
+pred <- predict(glm_2, newdata = test,
+            type = "response",
+            se.fit = FALSE, dispersion = NULL, terms = NULL,
+            na.action = na.pass)
+
+# Since glm() outputs a probability we consider that probability to be 1 above 0.50 and 0 below
+
+pred_rounded <- round(pred)
+
+targets <- new_data_new_features$target[-train_ind]
+
+table(targets == round(pred))
+```
+
+Looking at GoF parameters it looks like a good fit since the ratio between Residual Deviance and DoF it's close to 1.
+We can use this model to make a prediction and the next step would be training an ML algorithm to predict the results and compare them.
+
+```{r, include=F}
+## Machine Learning Techniques
+
+#For machine learning we'll be using `caret` library, we're going to fit a Decisione Tree model using the same training set and the same test set as we did with the generalized linear model
+```
+
+```{r, include=FALSE}
+library(caret)
+library(randomForest)
+
+rf <- randomForest(target ~ ., data = train, ntree = 100, proximity = T)
+
+table(predict(rf), train$target)
+
+print(rf)
+
+plot(rf, main = "Error rate vs number of trees")
+
+importance(rf)
+
+varImpPlot(rf)
+
+song_predict <- predict(rf, newdata = test)
+table(song_predict, test$target)
+
+
+
+```

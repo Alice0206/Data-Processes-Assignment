@@ -34,19 +34,19 @@ We think it is really interesting to work and explore data about music and have 
 
 In the following example, they are collecting data from Music streaming service platforms.
 Later they use this in a machine-learning algorithm to predict the mood of the user based on his/her playlist of music.
-<https://towardsdatascience.com/predicting-my-mood-using-my-spotify-data-2e898add122a>
+[Spotify Taste Analysis](https://towardsdatascience.com/predicting-my-mood-using-my-spotify-data-2e898add122a)
 
 In this project, they try to find common patterns among the most popular songs on Spotify,
 They analyze the audio features of the tracks in Spotify's Top Songs of 2017 playlist.
-https://www.kaggle.com/cihanoklap/top-songs-on-spotify-what-makes-them-popular
+[Spotify Project](https://www.kaggle.com/cihanoklap/top-songs-on-spotify-what-makes-them-popular)
 
 By analyzing the data of the top 100 artists on Spotify, the following project tries to group the artists into clusters and give a description of each cluster to discover more information about the most successful artists.
-<https://towardsdatascience.com/what-data-science-can-tell-us-about-mainstream-music-e56b20e00a25>
+[Music Project](https://towardsdatascience.com/what-data-science-can-tell-us-about-mainstream-music-e56b20e00a25)
 
 ### Data-driven questions
 
 1. What features have TOP50 artists in Europe & China, some comparisons? We would like to generate a Map of nations (Europe) for the most common type of music (according to the features contained in the dataset).
-2. What are the characteristics of a new viral song? Which features are the most important, what is its average lifespan? (We would like to focus on Italy first and then extend it to Europe).
+2. What are the differences in music features between song I like and song I dislike? A brief analysis of my musical tastes.
 3. Which countries are listening to their songs instead of foreign ones?
 4. Analysis of the evolution of the musical tastes in each country (in EU)?
 5. How do the features of music influence the genre of music? (Alice)
@@ -106,7 +106,7 @@ Variables of dataset:
 #### [Music Features](https://www.kaggle.com/insiyeah/musicfeatures)
 
 This dataset contains the features of different music genres and it has 100 songs for each genre.
-It has 30 features and 1000 observations, we are going to use this dataset to differences in features 
+It has 30 features and 1000 observations, we are going to use this dataset to differences in features
 We have downloaded the dataset from Kaggle.com.
 
 Variables of the dataset:
@@ -125,7 +125,7 @@ Variables of the dataset:
 
 #### [Radio Stations](https://rapidapi.com/maxime.maisonneuve/api/30-000-radio-stations-and-music-charts/details)
 Deezer API and Rapid API offer a radio station API which can be used to access data about the music being played at the moment or was played recently (short term data).
-We are going to use the dataset look for trendy music and analyze their feature to find out and answer the question of what are the characteristics of songs which go viral? 
+We are going to use the dataset look for trendy music and analyze their feature to find out and answer the question of what are the characteristics of songs which go viral?
 
 Variables of the dataset:
 - Radio search (**i**: Radio station unique id; **d**: Genre id; **n**: Radio name; **c**: Country 2-letter code; **g**: Genre name; **u**: Stream URL; **l**: Radio logo)
@@ -150,7 +150,7 @@ Information on what those traits mean can be found here: https://developer.spoti
 - **liveness**:	Detects the presence of an audience in the recording. Higher liveness values represent an increased probability that the track was performed live. A value above 0.8 provides strong likelihood that the track is live.
 - **loudness**: The overall loudness of a track in decibels (dB). Loudness values are averaged across the entire track and are useful for comparing relative loudness of tracks. Loudness is the quality of a sound that is the primary psychological correlate of physical strength (amplitude). Values typical range between -60 and 0 db.
 - **mode**: Mode indicates the modality (major or minor) of a track, the type of scale from which its melodic content is derived. Major is represented by 1 and minor is 0.
-- speechiness**: Speechiness detects the presence of spoken words in a track. The more exclusively speech-like the recording (e.g. talk show, audio book, poetry), the closer to 1.0 the attribute value. Values above 0.66 describe tracks that are probably made entirely of spoken words. Values between 0.33 and 0.66 describe tracks that may contain both music and speech, either in sections or layered, including such cases as rap music. Values below 0.33 most likely represent music and other non-speech-like tracks.
+- **speechiness**: Speechiness detects the presence of spoken words in a track. The more exclusively speech-like the recording (e.g. talk show, audio book, poetry), the closer to 1.0 the attribute value. Values above 0.66 describe tracks that are probably made entirely of spoken words. Values between 0.33 and 0.66 describe tracks that may contain both music and speech, either in sections or layered, including such cases as rap music. Values below 0.33 most likely represent music and other non-speech-like tracks.
 - **tempo**: The overall estimated tempo of a track in beats per minute (BPM). In musical terminology, tempo is the speed or pace of a given piece and derives directly from the average beat duration.
 - **time_signature**:	An estimated overall time signature of a track. The time signature (meter) is a notational convention to specify how many beats are in each bar (or measure).
 - **valence**: A measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry).
