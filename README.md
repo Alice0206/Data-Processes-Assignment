@@ -49,7 +49,7 @@ By analyzing the data of the top 100 artists on Spotify, the following project t
 2. What are the characteristics of a new viral song? Which features are the most important, what is its average lifespan? (We would like to focus on Italy first and then extend it to Europe).
 3. Which countries are listening to their songs instead of foreign ones?
 4. Analysis of the evolution of the musical tastes in each country (in EU)?
-5. What are the main differences in features between different genres? How does the value of the "beat" feature change among songs from the same genre and how does it change among different genres?
+5. How do the features of music influence the genre of music? (Alice)
 
 ## Datasets
 
