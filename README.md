@@ -154,3 +154,21 @@ Information on what those traits mean can be found here: https://developer.spoti
 - **tempo**: The overall estimated tempo of a track in beats per minute (BPM). In musical terminology, tempo is the speed or pace of a given piece and derives directly from the average beat duration.
 - **time_signature**:	An estimated overall time signature of a track. The time signature (meter) is a notational convention to specify how many beats are in each bar (or measure).
 - **valence**: A measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry).
+
+
+#### [Million Song Dataset](http://millionsongdataset.com/pages/example-track-description/)
+Described as following on the source page of the dataset.
+"The Million Song Dataset is a freely-available collection of audio features and metadata for a million contemporary popular music tracks."
+I will bes uing only a small subset of the dataset which I found [here.](https://github.com/thomasSve/Million-Song-Dataset-Analysis/tree/master/datasets).
+
+Variables of dataset:
+**track_id**
+**artist_name**
+**title**: title of the song
+**loudness**: general loudness of the track
+**tempo**: tempo in BPM according to The Echo Nest
+**time_signal**: time signature of the song according to The Echo Nest, i.e. usual number of beats per bar
+**key**: estimation of the key the song is in by The Echo Nest
+**duration**: in seconds
+**song_hotttnesss**: according to The Echo Nest, when downloaded (in December 2010), this song had a 'hotttnesss' of 0.8 (on a scale of 0 and 1)
+**year**: year when this song was released, according to musicbrainz.org
