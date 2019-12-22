@@ -162,13 +162,13 @@ Described as following on the source page of the dataset.
 I will bes uing only a small subset of the dataset which I found [here.](https://github.com/thomasSve/Million-Song-Dataset-Analysis/tree/master/datasets).
 
 Variables of dataset:
-**track_id**
-**artist_name**
-**title**: title of the song
-**loudness**: general loudness of the track
-**tempo**: tempo in BPM according to The Echo Nest
-**time_signal**: time signature of the song according to The Echo Nest, i.e. usual number of beats per bar
-**key**: estimation of the key the song is in by The Echo Nest
-**duration**: in seconds
-**song_hotttnesss**: according to The Echo Nest, when downloaded (in December 2010), this song had a 'hotttnesss' of 0.8 (on a scale of 0 and 1)
-**year**: year when this song was released, according to musicbrainz.org
+- **track_id**
+- **artist_name**
+- **title**: title of the song
+- **loudness**: general loudness of the track
+- **tempo**: tempo in BPM according to The Echo Nest
+- **time_signal**: time signature of the song according to The Echo Nest, i.e. usual number of beats per bar
+- **key**: estimation of the key the song is in by The Echo Nest
+- **duration**: in seconds
+- **song_hotttnesss**: according to The Echo Nest, when downloaded (in December 2010), this song had a 'hotttnesss' of 0.8 (on a scale of 0 and 1)
+- **year**: year when this song was released, according to musicbrainz.org
